@@ -1,18 +1,17 @@
-import AlaSQL from "../until/alasqlsetup";
-
+import alasql from "alasql";
 
 class AdressModel{
 
     static create(adress){
-         AlaSQL('INSERT INTO adress (CEP, Rua, Bairro, Cidade, Estado, Pais, CPFUser, EnderecoPrincipal) VALUE (?, ?, ?, ?, ?, ?, ?, ?)', [adress.cep, adress.rua, adress.bairro, adress.cidade, adress.estado, adress.pais, adress.cpfUser, adress.endPrincipal]);
+        alasql('INSERT INTO adress (CEP, Rua, Bairro, Cidade, Estado, Pais, CPFUser, EnderecoPrincipal) VALUE (?, ?, ?, ?, ?, ?, ?, ?)', [adress.cep, adress.rua, adress.bairro, adress.cidade, adress.estado, adress.pais, adress.cpfUser, adress.endPrincipal]);
     }
 
     static read(adress){
-        return AlaSQL('SELECT * FROM adress WHERE CPFUser = ?', [adress.cpfUser]);
+        return alasql('SELECT * FROM adress WHERE CPFUser = ?', [adress.cpfUser]);
     }
 
     static showAll(){
-        return AlaSQL('SELECT Client.NomeCompleto, Adress.* FROM Client JOIN Adress ON Client.CPF = Adress.CPFCliente');
+        return alasql('SELECT Client.NomeCompleto, Adress.* FROM Client JOIN Adress ON Client.CPF = Adress.CPFCliente');
     }
     
     

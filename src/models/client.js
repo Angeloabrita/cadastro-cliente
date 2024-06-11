@@ -1,4 +1,6 @@
 import AlaSQL from "../until/alasqlsetup"
+//created table client
+AlaSQL('CREATE TABLE Client  (CPF STRING PRIMARY KEY, NomeCompleto STRING, DataNascimento DATE, Telefone STRING, Celular STRING)');
 
 class Client{
 
