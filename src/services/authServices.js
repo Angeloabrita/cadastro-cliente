@@ -36,8 +36,6 @@ class AuthService {
               if (result) {
                 console.log('Login successful');
                 alert("Login com sucesso");
-
-                
                 alasql('UPDATE Authentication SET Status = ? WHERE UserNome = ?', ["loged","nome"])
               } else {
                 alert("Senha ou usuario Incorretos");

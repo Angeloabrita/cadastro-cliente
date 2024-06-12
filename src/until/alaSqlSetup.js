@@ -12,10 +12,9 @@ alasql('CREATE INDEXEDDB DATABASE IF NOT EXISTS agrosysdb;\
     alasql.promise('CREATE TABLE IF NOT EXISTS Adress (id INT AUTO_INCREMENT, CEP STRING, Rua STRING, Bairro STRING, Cidade STRING, Estado STRING, Pais STRING, CPFCliente STRING, EnderecoPrincipal BOOLEAN, FOREIGN KEY (CPFCliente) REFERENCES Client(CPF))');
     //auth table
 
-    alasql.promise('CREATE TABLE IF NOT EXISTS Authentication (Status STRING, UserNome Nome)');
+    alasql.promise('CREATE TABLE IF NOT EXISTS Authentication (Status STRING, UserNome String)');
     
-    //create first auth gohorse
-    alasql.promise('INSERT INTO Authentication (Status, UserNome) VALUE(?, ?)', ["logout", "nome"])
+  
     
 });
 alasql.options.errorlog = true;

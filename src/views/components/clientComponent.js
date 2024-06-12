@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import alasql from 'alasql';
+
 import Client from '../../models/clientModel';
 
 const AdicionarCliente = () => {

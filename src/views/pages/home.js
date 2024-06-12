@@ -1,5 +1,5 @@
 
-import { Container,Col,Row, Button } from "react-bootstrap";
+import {  Button } from "react-bootstrap";
 
 
 
@@ -12,7 +12,7 @@ function Home(){
         {/* Conteúdo da sua div */}
         <h3>Bem vindo ao Go Horse cadastro</h3>
         <p>Sem internet, IA só no celular e uma boa dose de café e amor</p>
-        <div className="d-flex justify-content-center align-items-center m-3">
+        <div className="d-flex justify-content-evenly align-items-center ">
         <Button href="/register" variant="primary">Criar Conta</Button>
         <Button href="/login" variant="secondary">Login</Button>
         

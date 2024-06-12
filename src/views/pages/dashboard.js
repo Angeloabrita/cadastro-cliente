@@ -1,18 +1,35 @@
 import React from 'react'
 import AdicionarCliente from '../components/clientComponent'
-import { Stack } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
+import AdicionarEndereco from '../components/enderecoComponent'
 
 function Dashboard() {
     return (
         <div>
-    <Stack direction="horizontal" gap={2}>
-      <div className="p-2">
-      <AdicionarCliente />
-      </div>
+    
 
-      <div className="p-2">Second item</div>
-      
-    </Stack>
+    <Container className="my-3">
+      <Row className="mb-3">
+        <Col xs={12} md={6}>
+          <div className="p-3 border bg-light">
+
+          <AdicionarCliente />
+          </div>
+        </Col>
+        <Col xs={12} md={6}>
+          <div className="p-3 border bg-light">
+
+            <AdicionarEndereco />
+
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12}>
+          <div className="p-3 border bg-light">Linha horizontal abaixo</div>
+        </Col>
+      </Row>
+    </Container>
             
         </div>
     )
