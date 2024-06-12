@@ -14,6 +14,7 @@ function App() {
 
   const [isAuthenticated, setIsAuthenticated] =  useState(true);
   console.log(isAuthenticated);
+  
   function auth() {
     const auth = AuthService.isLoged()
     setIsAuthenticated(auth);
