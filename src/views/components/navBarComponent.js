@@ -10,7 +10,7 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/home">Inicio</Nav.Link>
+            <Nav.Link href="/home">Painel de controle</Nav.Link>
             <Nav.Link href="/register">Cadastro</Nav.Link>
             <NavDropdown title="Conta" id="basic-nav-dropdown">
               <NavDropdown.Item href="/login">Login</NavDropdown.Item>
