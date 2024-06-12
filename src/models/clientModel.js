@@ -3,8 +3,17 @@ import alasql from "../until/alaSqlSetup";
 
 class Client{
 
-    static create(client){
-        alasql('INSERT INTO Client (CPF, NomeCompleto, DataNascimento, Telefone, Celular, token) VALUES (?, ?, ?, ?, ?, ?)', [client.cpf, client.dataNascimento, client.telefone, client.celular, client.token])
+    static create(...client){
+        alasql.promise(`INSERT INTO Client (nome, cpf,
+             dataNacimento, telefone, celular, token) 
+            VALUES (?, ?, ?, ?, ?, ?)`, [client[0], client[1], client[2], client[3], client[4], client[5] ]) .then(() => {
+                console.log('Cliente adicionado com sucesso!');
+               alert("Cliente adicionado com sucesso");
+              })
+              .catch((error) => {
+                alert("Ops! Algo de errado esta certo")
+                console.error('Erro ao adicionar cliente:', error);
+              });
     }
 
      find(client){

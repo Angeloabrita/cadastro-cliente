@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Registerr from './views/pages/register';
 import Dashboard from './views/pages/dashboard';
@@ -13,7 +12,7 @@ import AuthService from './services/authServices';
 function App() {
 
 
-  const [isAuthenticated, setIsAuthenticated] =  useState(false);
+  const [isAuthenticated, setIsAuthenticated] =  useState(true);
   console.log(isAuthenticated);
   function auth() {
     const auth = AuthService.isLoged()
@@ -28,7 +27,7 @@ function App() {
          <Route path="login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Loginn />} />
          <Route path="dashboard" element={ isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
          <Route path="register" element={ isAuthenticated ? <Navigate to="/dashboard" /> : <Registerr />} />
-         <Route path="*" element={isAuthenticated ? <NotFoud /> : <Navigate to="/" />} />
+         <Route path="*" element={ <NotFoud />} />
          
 
       </Routes>

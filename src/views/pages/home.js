@@ -1,5 +1,4 @@
-import NavBar from "../components/navBarComponent";
-import AutoCep from "../components/autocepComponent";
+
 import { Container,Col,Row, Button } from "react-bootstrap";
 
 

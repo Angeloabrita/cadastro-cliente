@@ -2,7 +2,7 @@ import React from 'react';
 
 function NotFoud(){
     return(
-        <h1>Not Found</h1>
+        <h1>404 nada aqui pra tu</h1>
     )
 }
 
