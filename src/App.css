@@ -13,6 +13,10 @@
   }
 }
 
+.bg-rs{
+  background: rgb(0,187,19);
+  background: linear-gradient(90deg, rgba(0,187,19,1) 0%, rgba(255,0,0,1) 50%, rgba(254,255,0,1) 100%);
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -36,3 +40,5 @@
     transform: rotate(360deg);
   }
 }
+
+

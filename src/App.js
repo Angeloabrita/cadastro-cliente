@@ -10,7 +10,7 @@ import NavBar from './views/components/navBarComponent';
 
 function App() {
   return (
-    <div>
+    <div className='bg-rs'>
      <NavBar></NavBar>
      <Routes>
          <Route path="/" element={<Home />} />

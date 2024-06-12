@@ -57,6 +57,28 @@ class AuthService {
     }
 }
 
+static async logout() {
+  try {
+    alasql('UPDATE Authentication SET Status = ? WHERE UserNome = ?', ["logout", "nome"])
+  } catch (error) {
+    console.error('Erro no logout:', error);
+  }
+}
+
+//check if is loged
+static async isLoged() {
+  try {
+    const result = await alasql.promise('SELECT * FROM Authentication WHERE UserNome = ?', ["nome"]);
+    if (result.length > 0) {
+      const user = result[0];
+      return user.Status === "loged";
+    }
+    return false;
+  } catch (error) {
+    console.error('Erro ao verificar login:', error);
+    return false;
+  }
+}
 
 
   
