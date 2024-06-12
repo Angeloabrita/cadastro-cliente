@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import bcrypt from 'bcryptjs'
 
 import UserModel from '../../models/userModel';
+import AuthService from '../../services/authServices';
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -10,10 +11,8 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const hashedPassword =  bcrypt.hashSync(password, 10);
-      console.log(hashedPassword);
-      UserModel.create(username, cargo, hashedPassword); 
-      alert('Usuario criado com sucesso');
+      
+      AuthService.register(username, cargo, password); 
       
 
     } catch (error) {

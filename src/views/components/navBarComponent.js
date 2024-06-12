@@ -1,21 +1,30 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 
- const Navbar = () => {
-   return (
-     <nav>
-       <ul>
-         <li>
-           <Link to="/">Home</Link>
-         </li>
-         <li>
-           <Link to="/login">Login</Link>
-         </li>
-         <li>
-           <Link to="/register">Cadastro</Link>
-         </li>
-       </ul>
-     </nav>
-   );
- }
+const NavBar = () => {
+    return (
+      <Navbar expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand href="#home">Go Horse!! Cadastro</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/home">Inicio</Nav.Link>
+            <Nav.Link href="/register">Cadastro</Nav.Link>
+            <NavDropdown title="Conta" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+              <NavDropdown.Item href="/logout">
+              logout
+              </NavDropdown.Item>
+              
+        
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+    );
+};
 
- export default Navbar
+export default NavBar;

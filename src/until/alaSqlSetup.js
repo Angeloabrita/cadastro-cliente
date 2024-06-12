@@ -1,15 +1,25 @@
 import alasql from 'alasql';
+alasql('CREATE INDEXEDDB DATABASE IF NOT EXISTS agrosysdb;\
+    ATTACH INDEXEDDB DATABASE agrosysdb; \
+    USE agrosysdb; \
+    ', [], function(){
 
-var db = new alasql.Database()
+    // Select data from IndexedDB
+    alasql.promise('CREATE TABLE IF NOT EXISTS Users (Id STRING  AUTOINCREMENT, Nome STRING PRIMARY KEY, Cargo STRING, Token STRING)')
+    //created table client
+    alasql.promise('CREATE TABLE IF NOT EXISTS Client(id INT AUTO_INCREMENT, nome STRING, cpf STRING PRIMARY KEY, dataNacimento STRING, telefone STRING, celular STRING)')
+    //create adress
+    alasql.promise('CREATE TABLE IF NOT EXISTS Adress (id INT AUTO_INCREMENT, CEP STRING, Rua STRING, Bairro STRING, Cidade STRING, Estado STRING, Pais STRING, CPFCliente STRING, EnderecoPrincipal BOOLEAN, FOREIGN KEY (CPFCliente) REFERENCES Client(CPF))');
+    //auth table
 
-//created table user
-db.exec('CREATE TABLE IF NOT EXISTS Users (Id STRING PRIMARY KEY AUTOINCREMENT, Nome STRING, Cargo STRING, Token STRING)')
+    alasql.promise('CREATE TABLE IF NOT EXISTS Authentication (Status STRING, UserNome Nome)');
+    
+    //create first auth gohorse
+    alasql.promise('INSERT INTO Authentication (Status, UserNome) VALUE(?, ?)', ["logout", "nome"])
+    
+});
+alasql.options.errorlog = true;
 
-//created table client
-db.exec('CREATE  TABLE IF NOT EXISTS Client  (CPF STRING PRIMARY KEY, NomeCompleto STRING, DataNascimento DATE, Telefone STRING, Celular STRING)')
 
-//create adress
-db.exec('CREATE TABLE IF NOT EXISTS Adress (CEP STRING, Rua STRING, Bairro STRING, Cidade STRING, Estado STRING, Pais STRING, CPFCliente STRING, EnderecoPrincipal BOOLEAN, FOREIGN KEY (CPFCliente) REFERENCES Client(CPF))');
-
-export default db;
+export default alasql;
 

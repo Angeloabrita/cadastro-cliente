@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import UserModel from '../../models/userModel';
+import AuthService from '../../services/authServices';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -7,9 +9,11 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      alert('Login successo');
+
+     await AuthService.login(username, password)
+      
     } catch (error) {
-      alert('Senha ou usuario errado');
+      alert('Ops! Ocorreu um erro ao logar, atualize a pagina e tente novamente');
     }
   };
 

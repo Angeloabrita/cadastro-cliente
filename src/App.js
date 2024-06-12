@@ -6,11 +6,12 @@ import Home from './views/pages/home';
 import { Routes, Route } from "react-router-dom";
 import NotFoud from './views/pages/notfoud';
 import Loginn from './views/pages/login';
+import NavBar from './views/components/navBarComponent';
 
 function App() {
   return (
     <div>
-     
+     <NavBar></NavBar>
      <Routes>
          <Route path="/" element={<Home />} />
          <Route path="login" element={<Loginn />} />
