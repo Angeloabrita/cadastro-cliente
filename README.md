@@ -22,7 +22,3 @@ Ainda precisamos implementar as seguintes funcionalidades:
 - Deletar usuários.
 - Criar métodos para upload e download das listas de endereços.
 
-## Badges
-
-!npm version
-!Build Status
