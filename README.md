@@ -1,12 +1,28 @@
-# Cadastro client
+# Cadastro de Clientes
 
-## Tudo junto e misturado
+## Visão Geral
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![react](https://img.shields.io/badge/-react-yellow.svg)](https://opensource.org/licenses/)
+[![alaSQL](https://img.shields.io/badge/AlaSQL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
-Esse aplicativo é um CRUD simples para adicinar usuarios e cada usuario gerir ver e gerir lista de endereço
+Este aplicativo é um CRUD simples para adicionar usuários. Cada usuário pode visualizar e gerenciar uma lista de endereços.
 
-Para rodar é simples, instale as dependecinas com `npm install`
+## Como Rodar o Projeto
 
-Apos instalar as dependencias é só executar o comando `npm start`
+Para rodar o projeto, siga os passos abaixo:
 
-#TODO
-Ainda falta listar, deletar e criar os metodos para upload e donwload das lista.
+1. Instale as dependências com o comando `npm install`.
+2. Após instalar as dependências, execute o comando `npm start` para iniciar o aplicativo.
+
+## Pendências (TODO)
+
+Ainda precisamos implementar as seguintes funcionalidades:
+
+- Listar usuários.
+- Deletar usuários.
+- Criar métodos para upload e download das listas de endereços.
+
+## Badges
+
+!npm version
+!Build Status
