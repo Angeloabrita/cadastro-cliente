@@ -2,6 +2,7 @@ import React from 'react'
 import AdicionarCliente from '../components/clientComponent'
 import { Container, Row, Col } from 'react-bootstrap'
 import AdicionarEndereco from '../components/enderecoComponent'
+import EnderecosTable from '../components/tableEnderecoComponent'
 
 function Dashboard() {
     return (
@@ -26,7 +27,9 @@ function Dashboard() {
       </Row>
       <Row>
         <Col xs={12}>
-          <div className="p-3 border bg-light">Linha horizontal abaixo</div>
+          <div className="p-3 border bg-light">
+            <EnderecosTable /> 
+          </div>
         </Col>
       </Row>
     </Container>

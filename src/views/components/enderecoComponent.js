@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import alasql from './../../until/alaSqlSetup';
-import ClientModel from '../../models/clientModel';
+import AdressModel from '../../models/adressModel';
  
 const AdicionarEndereco = () => {
   const [clienteId, setClienteId] = useState('');
@@ -13,6 +13,7 @@ const AdicionarEndereco = () => {
   const [cidade, setCidade] = useState('');
   const [estado, setEstado] = useState('');
   const [pais, setPais] = useState('');
+  const [enderecoPrincipal, setEnderecoPrincipal] = useState(false);
 
     const fetchData = () => {
       alasql.promise('SELECT cpf, nome FROM Client')
@@ -22,25 +23,40 @@ const AdicionarEndereco = () => {
           
   };
   
-  const handleAdicionarEndereco = () => {
+
+  
 
 
+  const handleAdicionarEndereco = async (e) => {
 
-    alasql.promise('INSERT INTO Endereco (clienteId, cep, rua, bairro, cidade, estado, pais) VALUES (?, ?, ?, ?, ?, ?, ?)', [clienteId, cep, rua, bairro, cidade, estado, pais])
-      .then((res) => {
-        alert('Endereço adicionado com sucesso');
-      })
-      .catch((reason) => {
-        console.log('Erro: endereço já cadastrado');
-        alert('Erro! ' + reason);
-      });
-
-
-      ClientModel.find("02176469054").then((res) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-      });
+      e.preventDefault();
+      
+      try{
+        await AdressModel.create(
+          cep,
+          rua,
+          bairro,
+          cidade,
+          estado,
+          pais,
+          clienteId,
+          enderecoPrincipal,
+        );
+        alert("Endereço adicionado com sucesso!");
+        console.log('Endereço adicionado com sucesso!');
+        // Limpar os campos do formulário
+        setCep('');
+        setRua('');
+        setBairro('');
+        setCidade('');
+        setEstado('');
+        setPais('');
+        setEnderecoPrincipal(false);
+      }
+      catch(error){
+        alert("Erro ao adicionar endereço!");
+        console.error('Erro ao adicionar endereço:', error);
+      }
 
   };
 
@@ -52,14 +68,17 @@ const AdicionarEndereco = () => {
           <Form.Select
             id="clienteId"
             value={clienteId}
-             onClick= { fetchData }
+            
              onChange={(e) => {
               setClienteId(e.target.value); }}
+              onClick= { (e) => {
+                fetchData();
+                setClienteId(e.target.value); } }
           >
             {loading && <option>Loading...</option>}
             {clientes.map((cliente) => (
-              <option key={cliente.id} value={cliente.id}>
-                {cliente.nome}
+              <option key={cliente.cpf} value={cliente.cpf}>
+                {cliente.nome} - {cliente.cpf}
               </option>
             ))}
           </Form.Select>
@@ -117,6 +136,15 @@ const AdicionarEndereco = () => {
             value={pais}
             onChange={(e) => setPais(e.target.value)}
           />
+        </Form.Group>
+        <Form.Group className="mb-3">
+        <Form.Check // prettier-ignore
+        type="switch"
+        id="enderecoPrincipal"
+        label="Endereço principal"
+        checked={enderecoPrincipal}
+        onChange = {(e) => setEnderecoPrincipal(e.target.value)}
+      />
         </Form.Group>
         <Button variant="primary" onClick={handleAdicionarEndereco}>
           Adicionar

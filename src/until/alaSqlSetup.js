@@ -11,7 +11,7 @@ alasql('CREATE LOCALSTORAGE DATABASE IF NOT EXISTS agrosysdb;\
     //created table client
     alasql.promise('CREATE TABLE IF NOT EXISTS Client(nome STRING, cpf STRING PRIMARY KEY UNIQUE, dataNacimento STRING, telefone STRING, celular STRING)')
     //create adress
-    alasql.promise('CREATE TABLE IF NOT EXISTS Adress (id INT AUTO_INCREMENT, CEP STRING, Rua STRING, Bairro STRING, Cidade STRING, Estado STRING, Pais STRING, CPFCliente STRING, EnderecoPrincipal BOOLEAN, FOREIGN KEY (CPFCliente) REFERENCES Client(CPF))');
+    alasql.promise('CREATE TABLE IF NOT EXISTS Adress (id INT AUTO_INCREMENT, CEP STRING, Rua STRING, Bairro STRING, Cidade STRING, Estado STRING, Pais STRING, CPFCliente STRING, EnderecoPrincipal STRING, FOREIGN KEY (CPFCliente) REFERENCES Client(cpf))');
     //auth table
 
     alasql.promise('CREATE TABLE IF NOT EXISTS Authentication (Status STRING, UserNome String)');
