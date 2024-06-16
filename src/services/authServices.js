@@ -9,15 +9,13 @@ import alasql from 'alasql';
 // Iguinore as bilões de falhas de seguran, iss é só para simular um login direto no front sem savar a senha no banco
 
 class AuthService {
-  static async register(username, cargo, password) {
+  static register(username, cargo, password) {
     try{
-      const hashedPassword = await bcrypt.hash(password, 10);
-      console.log(hashedPassword);
+      const hashedPassword =  bcrypt.hashSync(password, 10);
       UserModel.create( username, cargo, hashedPassword);
     }
     catch(e){
       console.log(e);
-      alert("Erro ao cadastrar usuario")
     }
     
   }

@@ -27,7 +27,7 @@ function App() {
          <Route path="/" element={ <Home />} />
          <Route path="login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Loginn />} />
          <Route path="dashboard" element={ isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
-         <Route path="register" element={ isAuthenticated ? <Registerr /> : <Navigate to="/dashboard" /> } />
+         <Route path="register" element={ !isAuthenticated ? <Registerr /> : <Navigate to="/dashboard" /> } />
          <Route path="*" element={ <NotFoud />} />
          
 

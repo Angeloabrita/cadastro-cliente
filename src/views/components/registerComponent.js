@@ -2,16 +2,22 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AuthService from '../../services/authServices';
+import { Navigate, redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [cargo, setCargo] = useState('');
 
+  const navigate = useNavigate();
+
+  
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       AuthService.register(username, cargo, password);
+      navigate('dashboard');
     } catch (error) {
       alert('Falha ao salvar usuário');
       console.log(error);
