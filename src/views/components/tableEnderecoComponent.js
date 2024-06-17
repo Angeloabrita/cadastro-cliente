@@ -22,11 +22,14 @@ const EnderecosTable = () => {
    
   };
 
-  const deletarEndereco = (clienteCpf, clienteCep) => {
+  const deletarEndereco = (adressId) => {
     // Função para deletar o endereço, adicione a lógica necessária aqui
-    AdressModel.delete(clienteCpf, clienteCep)
-      .then(() => {
+    AdressModel.delete(adressId)
+      .then((e) => {
         //atualizar a tabela
+        alert("Endereço excluido");
+        console.log(e + " excluido");
+        atualizarTabelaEnderecos();
 
       })
       .catch((error) => {
@@ -64,9 +67,17 @@ const EnderecosTable = () => {
                 <Button 
                   variant="danger"
                   size="sm"
-                  onClick={() => deletarEndereco(item.clienteId, item.clienteCep)}
+                  onClick={() => deletarEndereco(item.id)}
                 >
                   Deletar
+                </Button>
+
+                <Button 
+                  variant="primary"
+                  size="sm"
+                  onClick={() => deletarEndereco(item.clienteId, item.id)}
+                >
+                  Atualizar
                 </Button>
               </td>
             </tr>
