@@ -13,6 +13,7 @@ const EnderecosTable = () => {
   const atualizarTabelaEnderecos = () => {
     AdressModel.getAll()
       .then((results) => {
+        console.log(results);
         setDados(results);
       })
       .catch((error) => {
@@ -23,6 +24,15 @@ const EnderecosTable = () => {
 
   const deletarEndereco = (clienteCpf, clienteCep) => {
     // Função para deletar o endereço, adicione a lógica necessária aqui
+    AdressModel.delete(clienteCpf, clienteCep)
+      .then(() => {
+        //atualizar a tabela
+
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+
   };
 
   const exportarDadosParaJSON = () => {
@@ -34,22 +44,22 @@ const EnderecosTable = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            {['ID', 'Nome do Cliente', 'CEP', 'Rua', 'Bairro', 'Cidade', 'Estado', 'País', 'Ações'].map((titulo) => (
+            {['Identificador (CPF)', 'Nome do Cliente', 'CEP', 'Rua', 'Bairro', 'Cidade', 'Estado', 'País', 'Ações'].map((titulo) => (
               <th key={titulo} className="align-middle"><b>{titulo}</b></th>
             ))}
           </tr>
         </thead>
         <tbody>
           {dados.map((item) => (
-            <tr key={item.clienteId} className="align-middle">
-              <td>{item.clienteId}</td>
-              <td>{item.clienteNome}</td>
-              <td>{item.clienteCep}</td>
-              <td>{item.clienteRua}</td>
-              <td>{item.clienteBairro}</td>
-              <td>{item.clienteCidade}</td>
-              <td>{item.clienteEstado}</td>
-              <td>{item.clientePais}</td>
+            <tr key={item.id} className="align-middle">
+              <td>{item.clientId}</td>
+              <td>{item.clientNome}</td>
+              <td>{item.clientCep}</td>
+              <td>{item.clientRua}</td>
+              <td>{item.clientBairro}</td>
+              <td>{item.clientCidade}</td>
+              <td>{item.clientEstado}</td>
+              <td>{item.clientPais}</td>
               <td className="text-center">
                 <Button 
                   variant="danger"

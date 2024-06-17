@@ -9,11 +9,16 @@ class AdressModel{
     }
 
     static async read(adress){
-        return await alasql('SELECT * FROM Adress WHERE CPFUser = ?', [adress[0]]);
+        return await alasql("SELECT * FROM Adress WHERE CPFUser = '"+adress+"'");
     }
 
     static async getAll(){
-        return await alasql('SELECT Client.Nome, Adress.* FROM Client JOIN Adress ON Client.CPF = Adress.CPFCliente');
+        //return await alasql.promise('SELECT Client.is, Adress.* FROM Client JOIN Adress ON Client.cpf = Adress.CPFCliente');
+        return alasql('SELECT Client.cpf AS clientId, Client.nome AS clientNome, Adress.id AS id, Adress.CEP AS clientCep, Adress.Rua AS clientRua, Adress.Bairro AS clientBairro, Adress.Cidade AS clientCidade, Adress.Estado AS clientEstado, Adress.Pais AS clientPais FROM Client JOIN Adress ON Client.cpf = Adress.CPFCliente');
+    }
+
+    static async delete(userCPF, id){
+        return await alasql("DELETE FROM Adress WHERE CPFCliente ='"+userCPF+"' AND Rua = '"+id+"'");
     }
     
     
