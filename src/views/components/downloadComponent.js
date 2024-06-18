@@ -14,9 +14,9 @@ const BtnDownload = () => {
        ClientModel.findAll(),
        
     ]).then((results) => {
-      const Client = results[1];
-      const Adress = results[0];
-      setClientsAndAddresses({ Client, Adress });
+      const clients = results[1];
+      const addresses = results[0];
+      setClientsAndAddresses({ clients, addresses });
     });
   }, []);
 
