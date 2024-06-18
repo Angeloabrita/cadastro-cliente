@@ -39,10 +39,6 @@ const EnderecosTable = () => {
 
   };
 
-  const exportarDadosParaJSON = () => {
-    // Função para exportar dados para JSON, adicione a lógica necessária aqui
-  };
-
   return (
     <div className="table-responsive">
       <Table striped bordered hover>
