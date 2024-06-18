@@ -1,5 +1,6 @@
 
 import {  Button } from "react-bootstrap";
+import UploadComponent from "../components/uploadComponet";
 
 
 
@@ -15,7 +16,8 @@ function Home(){
         <div className="d-flex justify-content-evenly align-items-center ">
         <Button href="/register" variant="primary">Criar Conta</Button>
         <Button href="/login" variant="secondary">Login</Button>
-        
+
+        <UploadComponent/>  
         
       </div>
       </div>
