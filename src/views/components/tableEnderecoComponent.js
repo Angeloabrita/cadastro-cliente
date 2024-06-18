@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AdressModel from '../../models/adressModel';
+import BtnDownload from './downloadComponent';
 
 const EnderecosTable = () => {
   const [dados, setDados] = useState([]);
@@ -84,7 +85,7 @@ const EnderecosTable = () => {
           ))}
         </tbody>
       </Table>
-      <Button className="btn btn-primary" onClick={exportarDadosParaJSON}>Exportar</Button>
+      <BtnDownload />
     </div>
   );
 };

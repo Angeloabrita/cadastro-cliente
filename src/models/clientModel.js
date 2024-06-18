@@ -43,6 +43,10 @@ class ClientModel{
         return await alasql('SELECT * FROM Client WHERE cpf = ?', [client])
     }
 
+    static async findAll(){
+        return await alasql('SELECT * FROM Client');
+    }   
+
     static update(client){
         alasql('UPDATE Client SET token = ? WHERE CPF = ?', [client.token, client.cpf])
     }   
