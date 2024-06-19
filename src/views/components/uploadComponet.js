@@ -1,26 +1,36 @@
 import React, { useState } from 'react';
 import alasql from '../../until/alaSqlSetup';
 import { Button, Form } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import AdressModel from '../../models/adressModel';
+import ClientModel from '../../models/clientModel';
 
 const UploadComponent = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [jsonData, setJsonData] = useState(null);
+ // const [jsonData, setJsonData] = useState(null);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
   const handleFileUpload = async () => {
+    
     if (!selectedFile) {
       alert('Por favor, selecione um arquivo antes de fazer o upload.');
+      return;
+
+      
+    }
+
+
+    const userConfirmed = window.confirm('Ao fazer o upload os dados atuais serão apagados. Deseja continuar?');
+    if (!userConfirmed) {
       return;
     }
 
     const reader = new FileReader();
     reader.onload = async (event) => {
       const data = JSON.parse(event.target.result);
-      setJsonData(data);
+     // setJsonData(data);
       await insertClients(data.clients);
       await insertAddresses(data.addresses);
     };
@@ -30,9 +40,10 @@ const UploadComponent = () => {
 
   const insertClients = async (clients) => {
     try {
-        console.log(clients);
+        
+      await ClientModel.deleteAll();
       for (const client of clients) {
-    
+        
         // Insira os dados do cliente no banco de dados
         await alasql.promise('INSERT INTO Client (nome, cpf, dataNacimento, telefone, celular) VALUES (?, ?, ?, ?, ?)', [
           client.nome,
@@ -50,7 +61,9 @@ const UploadComponent = () => {
 
   const insertAddresses = async (addresses) => {
     try {
-        console.log(addresses);
+      
+      await AdressModel.deleteAll();
+
       for (const address of addresses) {
         await alasql.promise('INSERT INTO Adress (CEP, Rua, Bairro, Cidade, Estado, Pais, CPFCliente, EnderecoPrincipal) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [
           address.CEP,
@@ -82,10 +95,7 @@ const UploadComponent = () => {
         </Form.Group>
         <Button onClick={handleFileUpload}>Upload</Button>
       </Form>
-      {/* Exiba os dados do arquivo .json, se necessário */}
-      {jsonData && (
-        <pre>{JSON.stringify(jsonData, null, 2)}</pre>
-      )}
+      
     </div>
   );
 };

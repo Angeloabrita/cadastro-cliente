@@ -24,6 +24,10 @@ class AdressModel{
         console.log(id);
         return await alasql(`DELETE FROM Adress WHERE id = ?`, [id]);
     }
+
+    static async deleteAll(){
+        return await alasql(`DELETE FROM Adress`);
+    }
     
     
     

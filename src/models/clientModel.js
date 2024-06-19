@@ -54,6 +54,10 @@ class ClientModel{
     static delete(client){
         alasql('DELETE FROM Client WHERE CPF = ?', [client.cpf])
     }
+
+    static async deleteAll(){
+      return await alasql('DELETE FROM Client')
+    }
 }
 
 export default ClientModel;
