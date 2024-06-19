@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import UserModel from '../../models/userModel';
 import AuthService from '../../services/authServices';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
 
      await AuthService.login(username, password)
-      
+     navigate('dashboard');
+
     } catch (error) {
       alert('Ops! Ocorreu um erro ao logar, atualize a pagina e tente novamente');
     }

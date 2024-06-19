@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AuthService from '../../services/authServices';
-import { Navigate, redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {

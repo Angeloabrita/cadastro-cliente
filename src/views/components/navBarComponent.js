@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import AuthService from '../../services/authServices'
 
-const NavBar = () => {
+
+
+
+const NavBar = ({ onLogout , userLoged })  => {
+
+
+ 
+
     return (
       <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -12,10 +20,9 @@ const NavBar = () => {
             <Nav.Link href="/dashboard">Painel de controle</Nav.Link>
             <Nav.Link href="/register">Cadastro</Nav.Link>
             <NavDropdown title="Conta" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-              <NavDropdown.Item href="/logout">
-              logout
-              </NavDropdown.Item>
+
+                {userLoged?  <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+:               <NavDropdown.Item onClick={onLogout}> logout</NavDropdown.Item>}
               
         
             </NavDropdown>
