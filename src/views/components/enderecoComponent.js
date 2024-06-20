@@ -15,9 +15,9 @@ const AdicionarEndereco = () => {
   const [pais, setPais] = useState('');
   const [enderecoPrincipal, setEnderecoPrincipal] = useState(false);
 
-  
-  const handleCepChange = (event) => {
-    const newCep = event.target.value.replace(/[^0-9]/g, '');
+  // verifica se CEP exit e autocomple os campos pernitenstes
+  const handleCepChange = (e) => {
+    const newCep = e.target.value.replace(/[^0-9]/g, '');
     setCep(newCep);
 
     if (newCep.length !== 8) return;
@@ -36,9 +36,6 @@ const AdicionarEndereco = () => {
       })
       .catch((error) => console.error(error));
   };
-
-
-
 
     const fetchData = () => {
       alasql.promise('SELECT cpf, nome FROM Client')
