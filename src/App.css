@@ -14,8 +14,8 @@
 }
 
 .bg-rs{
-  background: rgb(0,187,19);
-  background: linear-gradient(90deg, rgba(0,187,19,1) 0%, rgba(255,0,0,1) 50%, rgba(254,255,0,1) 100%);
+  background:rgb(24,72,93);
+  background: linear-gradient(90deg, rgba(rgb(16,62,82)) 0%, rgb(24,72,93) 50%, rgb(50, 127, 160) 100%);
 }
 .App-header {
   background-color: #282c34;
