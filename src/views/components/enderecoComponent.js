@@ -15,6 +15,31 @@ const AdicionarEndereco = () => {
   const [pais, setPais] = useState('');
   const [enderecoPrincipal, setEnderecoPrincipal] = useState(false);
 
+  
+  const handleCepChange = (event) => {
+    const newCep = event.target.value.replace(/[^0-9]/g, '');
+    setCep(newCep);
+
+    if (newCep.length !== 8) return;
+
+    const url = `https://viacep.com.br/ws/${newCep}/json/`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data) return;
+        setCep(data.cep);
+        setRua(data.logradouro);
+        setBairro(data.bairro);
+        setCidade(data.localidade);
+        setEstado(data.uf);
+      })
+      .catch((error) => console.error(error));
+  };
+
+
+
+
     const fetchData = () => {
       alasql.promise('SELECT cpf, nome FROM Client')
           .then((res) => {setClientes(res);
@@ -22,6 +47,8 @@ const AdicionarEndereco = () => {
           .catch((err) => console.error("nao ta chegando no tempo " + err)).finally(()=>setLoading(false));
           
   };
+
+
   
 
   
@@ -69,11 +96,17 @@ const AdicionarEndereco = () => {
             id="clienteId"
             value={clienteId}
             
-             onChange={(e) => {
-              setClienteId(e.target.value); }}
+             onChange={
+              (e) => {
+              setClienteId(e.target.value);
+                
+            
+            }}
               onClick= { (e) => {
                 fetchData();
                 setClienteId(e.target.value); } }
+                required
+
           >
             {loading && <option>Loading...</option>}
             {clientes.map((cliente) => (
@@ -89,7 +122,9 @@ const AdicionarEndereco = () => {
             id="cep"
             placeholder="CEP"
             value={cep}
-            onChange={(e) => setCep(e.target.value)}
+            onChange={handleCepChange}
+            required
+
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -98,7 +133,9 @@ const AdicionarEndereco = () => {
             id="rua"
             placeholder="Rua"
             value={rua}
-            onChange={(e) => setRua(e.target.value)}
+            onChange={handleCepChange}
+            required
+
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -107,7 +144,9 @@ const AdicionarEndereco = () => {
             id="bairro"
             placeholder="Bairro"
             value={bairro}
-            onChange={(e) => setBairro(e.target.value)}
+            onChange={handleCepChange}
+            required
+
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -116,7 +155,9 @@ const AdicionarEndereco = () => {
             id="cidade"
             placeholder="Cidade"
             value={cidade}
-            onChange={(e) => setCidade(e.target.value)}
+            onChange={handleCepChange}
+            required
+
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -125,7 +166,9 @@ const AdicionarEndereco = () => {
             id="estado"
             placeholder="Estado"
             value={estado}
-            onChange={(e) => setEstado(e.target.value)}
+            onChange={handleCepChange}
+            required
+
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -135,6 +178,7 @@ const AdicionarEndereco = () => {
             placeholder="País"
             value={pais}
             onChange={(e) => setPais(e.target.value)}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -144,6 +188,8 @@ const AdicionarEndereco = () => {
         label="Endereço principal"
         checked={enderecoPrincipal}
         onChange = {(e) => setEnderecoPrincipal(e.target.value)}
+        required
+
       />
         </Form.Group>
         <Button variant="primary" onClick={handleAdicionarEndereco}>
