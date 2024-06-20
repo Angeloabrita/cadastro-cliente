@@ -1,8 +1,8 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import alasql from './../../until/alaSqlSetup';
 import AdressModel from '../../models/adressModel';
- 
+
 const AdicionarEndereco = () => {
   const [clienteId, setClienteId] = useState('');
   const [clientes, setClientes] = useState([]);
@@ -14,8 +14,9 @@ const AdicionarEndereco = () => {
   const [estado, setEstado] = useState('');
   const [pais, setPais] = useState('');
   const [enderecoPrincipal, setEnderecoPrincipal] = useState(false);
+  const [erro, setErro] = useState('');
 
-  // verifica se CEP exit e autocomple os campos pernitenstes
+  // Verifica se CEP existe e autocompleta os campos pertinentes
   const handleCepChange = (e) => {
     const newCep = e.target.value.replace(/[^0-9]/g, '');
     setCep(newCep);
@@ -37,51 +38,51 @@ const AdicionarEndereco = () => {
       .catch((error) => console.error(error));
   };
 
-    const fetchData = () => {
-      alasql.promise('SELECT cpf, nome FROM Client')
-          .then((res) => {setClientes(res);
-          })
-          .catch((err) => console.error("nao ta chegando no tempo " + err)).finally(()=>setLoading(false));
-          
+  const fetchData = () => {
+    alasql
+      .promise('SELECT cpf, nome FROM Client')
+      .then((res) => {
+        setClientes(res);
+      })
+      .catch((err) => console.error("nao ta chegando no tempo " + err))
+      .finally(() => setLoading(false));
   };
 
-
-  
-
-  
-
-
   const handleAdicionarEndereco = async (e) => {
+    e.preventDefault();
 
-      e.preventDefault();
-      
-      try{
-        await AdressModel.create(
-          cep,
-          rua,
-          bairro,
-          cidade,
-          estado,
-          pais,
-          clienteId,
-          enderecoPrincipal,
-        );
-        alert("Endereço adicionado com sucesso!");
-        console.log('Endereço adicionado com sucesso!');
-        // Limpar os campos do formulário
-        setCep('');
-        setRua('');
-        setBairro('');
-        setCidade('');
-        setEstado('');
-        setPais('');
-        setEnderecoPrincipal(false);
-      }
-      catch(error){
-        alert("Erro ao adicionar endereço!");
-        console.error('Erro ao adicionar endereço:', error);
-      }
+    // Verificar se todos os campos estão preenchidos
+    if (!clienteId || !cep || !rua || !bairro || !cidade || !estado || !pais) {
+      setErro('Por favor, preencha todos os campos.');
+      return;
+    }
 
+    try {
+      await AdressModel.create(
+        cep,
+        rua,
+        bairro,
+        cidade,
+        estado,
+        pais,
+        clienteId,
+        enderecoPrincipal
+      );
+      alert("Endereço adicionado com sucesso!");
+      console.log('Endereço adicionado com sucesso!');
+      // Limpar os campos do formulário
+      setCep('');
+      setRua('');
+      setBairro('');
+      setCidade('');
+      setEstado('');
+      setPais('');
+      setEnderecoPrincipal(false);
+      setErro(''); // Limpar mensagem de erro após sucesso
+    } catch (error) {
+      alert("Erro ao adicionar endereço!");
+      console.error('Erro ao adicionar endereço:', error);
+    }
   };
 
   return (
@@ -92,18 +93,12 @@ const AdicionarEndereco = () => {
           <Form.Select
             id="clienteId"
             value={clienteId}
-            
-             onChange={
-              (e) => {
+            onChange={(e) => setClienteId(e.target.value)}
+            onClick={(e) => {
+              fetchData();
               setClienteId(e.target.value);
-                
-            
             }}
-              onClick= { (e) => {
-                fetchData();
-                setClienteId(e.target.value); } }
-                required
-
+            required
           >
             {loading && <option>Loading...</option>}
             {clientes.map((cliente) => (
@@ -121,7 +116,6 @@ const AdicionarEndereco = () => {
             value={cep}
             onChange={handleCepChange}
             required
-
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -130,9 +124,8 @@ const AdicionarEndereco = () => {
             id="rua"
             placeholder="Rua"
             value={rua}
-            onChange={handleCepChange}
+            onChange={(e) => setRua(e.target.value)}
             required
-
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -141,9 +134,8 @@ const AdicionarEndereco = () => {
             id="bairro"
             placeholder="Bairro"
             value={bairro}
-            onChange={handleCepChange}
+            onChange={(e) => setBairro(e.target.value)}
             required
-
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -152,9 +144,8 @@ const AdicionarEndereco = () => {
             id="cidade"
             placeholder="Cidade"
             value={cidade}
-            onChange={handleCepChange}
+            onChange={(e) => setCidade(e.target.value)}
             required
-
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -163,9 +154,8 @@ const AdicionarEndereco = () => {
             id="estado"
             placeholder="Estado"
             value={estado}
-            onChange={handleCepChange}
+            onChange={(e) => setEstado(e.target.value)}
             required
-
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -179,16 +169,15 @@ const AdicionarEndereco = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-        <Form.Check // prettier-ignore
-        type="switch"
-        id="enderecoPrincipal"
-        label="Endereço principal"
-        checked={enderecoPrincipal}
-        onChange = {(e) => setEnderecoPrincipal(e.target.value)}
-        required
-
-      />
+          <Form.Check
+            type="switch"
+            id="enderecoPrincipal"
+            label="Endereço principal"
+            checked={enderecoPrincipal}
+            onChange={(e) => setEnderecoPrincipal(e.target.checked)}
+          />
         </Form.Group>
+        {erro && <div className="alert alert-danger">{erro}</div>}
         <Button variant="primary" onClick={handleAdicionarEndereco}>
           Adicionar
         </Button>
