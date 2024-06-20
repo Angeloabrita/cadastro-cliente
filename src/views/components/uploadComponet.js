@@ -84,16 +84,19 @@ const UploadComponent = () => {
 
   return (
     <div>
-      <Form>
-        <Form.Group controlId="formFile">
+      <Form className='p-3'>
+        <Form.Group className='p-3' controlId="formFile">
           <Form.Label>Escolha um arquivo .json</Form.Label>
-          <Form.Control 
+          <Form.Control  
+            
             type="file" 
             onChange={handleFileChange} 
             accept=".json"
+
           />
+                  <Button onClick={handleFileUpload} >Upload</Button>
+
         </Form.Group>
-        <Button onClick={handleFileUpload}>Upload</Button>
       </Form>
       
     </div>

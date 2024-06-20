@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
-import AuthService from '../../services/authServices'
-
-
-
 
 const NavBar = ({ onLogout , userLoged })  => {
 
-
- 
 
     return (
       <Navbar expand="lg" className="bg-body-tertiary">

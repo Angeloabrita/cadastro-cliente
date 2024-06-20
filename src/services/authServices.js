@@ -48,7 +48,7 @@ class AuthService {
   static async logout(username) {
     try {
       await alasql.promise('UPDATE Authentication SET Status = ? WHERE UserNome = ?', ["logout", username]);
-      console.log('Logout successful');
+      console.log('Logout successful' + username);
     } catch (error) {
       console.error('Erro no logout:', error);
     }
@@ -61,9 +61,9 @@ class AuthService {
       const result = await alasql.promise('SELECT * FROM Authentication');
       if (result.length > 0 && result[0].Status === "loged") {
         console.log(result);
-        return true;
+        return result;
       }
-      return false;
+      return [];
     } catch (error) {
       console.error('Erro ao verificar login:', error);
       return false;

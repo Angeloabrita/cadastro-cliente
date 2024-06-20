@@ -10,13 +10,27 @@ import { useState, useEffect } from 'react';
 import AuthService from './services/authServices';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState();
   const [userLoged, setUserLoged] = useState("");
 
   useEffect(() => {
+
+    //verifica a persistencia de usuario logado
     const checkAuth = async () => {
       const auth = await AuthService.isLoged();
-      setIsAuthenticated(auth);
+      auth.map((item) => {
+        console.log(item)
+    
+       if(item.Status === "loged"){
+        setUserLoged(item.UserNome);
+        setIsAuthenticated(true);
+       }
+       else{
+        setUserLoged("");
+        setIsAuthenticated(false);
+       }
+      });
+   
     };
     checkAuth();
   }, [userLoged]);
