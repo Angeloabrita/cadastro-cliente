@@ -14,11 +14,3 @@ Para rodar o projeto, siga os passos abaixo:
 1. Instale as dependências com o comando `npm install`.
 2. Após instalar as dependências, execute o comando `npm start` para iniciar o aplicativo.
 
-## Pendências (TODO)
-
-Ainda precisamos implementar as seguintes funcionalidades:
-
-- Listar usuários.
-- Deletar usuários.
-- Criar métodos para upload e download das listas de endereços.
-
