@@ -54,7 +54,7 @@ function App() {
     <div className='bg-rs'>
       <NavBar onLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home/>} />
         <Route path="login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Loginn onLogin={handleLogin} />} />
         <Route path="dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="register" element={!isAuthenticated ? <Registerr /> : <Navigate to="/dashboard" />} />
