@@ -1,5 +1,6 @@
 {
   "name": "cadastro-cliente",
+  "homepage": "https://Angeloabrita.github.io/cadastro-cliente",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,7 +17,6 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://Angeloabrita.github.io/cadastro-cliente",
 
   "scripts": {
     "start": "react-scripts start",
