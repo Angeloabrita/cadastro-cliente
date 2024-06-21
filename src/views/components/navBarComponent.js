@@ -2,12 +2,12 @@ import React from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 
 const NavBar = ({ onLogout , userLoged })  => {
-
+    console.log("nova" + userLoged);
 
     return (
       <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">Go Horse!! </Navbar.Brand>
+        <Navbar.Brand href="/">Sysorga</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -15,8 +15,8 @@ const NavBar = ({ onLogout , userLoged })  => {
             <Nav.Link href="/register">Cadastro</Nav.Link>
             <NavDropdown title="Conta" id="basic-nav-dropdown">
 
-                {userLoged?  <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-:               <NavDropdown.Item onClick={onLogout}> logout</NavDropdown.Item>}
+                {userLoged?  <NavDropdown.Item href="/login">Login</NavDropdown.Item> : 
+                <NavDropdown.Item onClick={onLogout}> logout</NavDropdown.Item>}
               
         
             </NavDropdown>

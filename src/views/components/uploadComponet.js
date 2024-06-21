@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import alasql from '../../until/alaSqlSetup';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Row } from 'react-bootstrap';
 import AdressModel from '../../models/adressModel';
 import ClientModel from '../../models/clientModel';
 
@@ -84,21 +84,22 @@ const UploadComponent = () => {
 
   return (
     <div>
-      <Form className='p-3'>
-        <Form.Group className='p-3' controlId="formFile">
-          <Form.Label>Escolha um arquivo .json</Form.Label>
-          <Form.Control  
-            
-            type="file" 
-            onChange={handleFileChange} 
-            accept=".json"
-
-          />
-                  <Button onClick={handleFileUpload} >Upload</Button>
-
-        </Form.Group>
-      </Form>
-      
+      <Row>
+        <Form className='p-3'>
+          <Form.Group className='p-3' controlId="formFile">
+            <Form.Label>Importe seu banco de dados aqui em formato JSON</Form.Label>
+            <div className="d-flex align-items-center">
+              <Form.Control
+                type="file"
+                onChange={handleFileChange}
+                accept=".json"
+                className="me-2"
+              />
+              <Button onClick={handleFileUpload}>Upload</Button>
+            </div>
+          </Form.Group>
+        </Form>
+      </Row>
     </div>
   );
 };
