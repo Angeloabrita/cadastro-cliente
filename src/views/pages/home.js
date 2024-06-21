@@ -10,7 +10,7 @@ function Home(){
     return (
 <Container fluid className="vh-100 d-flex justify-content-center align-items-center">
       <Row className="w-100">
-        <Col xs={12} md={6} className="text-center mb-4 mb-md-0 d-flex justify-content-center">
+        <Col xs={12} md={6} className="text-center d-flex justify-content-center">
           <Image src={logoLogin} rounded style={{ width: '50%' }} />
         </Col>
         <Col xs={12} md={6} className="d-flex justify-content-center align-items-center">

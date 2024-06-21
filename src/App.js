@@ -8,6 +8,7 @@ import Loginn from './views/pages/login';
 import NavBar from './views/components/navBarComponent';
 import { useState, useEffect } from 'react';
 import AuthService from './services/authServices';
+import Footer from './views/components/footerComponent';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState();
@@ -59,6 +60,7 @@ function App() {
         <Route path="register" element={!isAuthenticated ? <Registerr /> : <Navigate to="/dashboard" />} />
         <Route path="*" element={<NotFoud />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

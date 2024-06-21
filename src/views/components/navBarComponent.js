@@ -15,8 +15,8 @@ const NavBar = ({ onLogout , userLoged })  => {
             <Nav.Link href="/register">Cadastro</Nav.Link>
             <NavDropdown title="Conta" id="basic-nav-dropdown">
 
-                {userLoged?  <NavDropdown.Item href="/login">Login</NavDropdown.Item> : 
-                <NavDropdown.Item onClick={onLogout}> logout</NavDropdown.Item>}
+                 <NavDropdown.Item href="/login">Login</NavDropdown.Item> 
+                <NavDropdown.Item onClick={onLogout}> logout</NavDropdown.Item>
               
         
             </NavDropdown>
