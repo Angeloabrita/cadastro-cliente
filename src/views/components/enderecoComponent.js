@@ -79,7 +79,6 @@ const AdicionarEndereco = () => {
       setPais('');
       setEnderecoPrincipal(false);
       setErro(''); // Limpar mensagem de erro após sucesso
-      window.location.reload()
     } catch (error) {
       alert("Erro ao adicionar endereço!");
       console.error('Erro ao adicionar endereço:', error);
