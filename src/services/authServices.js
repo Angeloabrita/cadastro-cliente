@@ -1,5 +1,5 @@
 import UserModel from '../models/userModel';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs-react';
 import alasql from 'alasql';
 
 class AuthService {
