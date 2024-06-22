@@ -15,13 +15,11 @@ Para rodar o projeto, siga os passos abaixo:
 2. Após instalar as dependências, execute o comando `npm start` para iniciar o aplicativo.
 3 . se você quiser ver uma versão ao vivo é só acessar: https://cadastrosysorga.netlify.app/
 
-# Bem-vindo(a)!
+### Sobre Mim
 
 [![GitHub followers](https://img.shields.io/github/followers/Angeloabrita?label=Follow&style=social)](https://github.com/Angeloabrita)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-angelo--gabriel--tavares--abrita-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/angelo-gabriel-tavares-abrita)
 
-
-### Sobre Mim
 
 Olá! Eu sou Angelo Abrita, um entusiasta de tecnologia apaixonado por desenvolvimento de software. Com experiência em diversas linguagens de programação e tecnologias, estou sempre em busca de novos desafios e oportunidades para aprender e crescer profissionalmente.
 
