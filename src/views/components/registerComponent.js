@@ -16,7 +16,7 @@ function Register() {
     e.preventDefault();
     try {
       AuthService.register(username, cargo, password);
-      navigate('dashboard');
+      navigate('/dashboard');
     } catch (error) {
       alert('Falha ao salvar usuário');
       console.log(error);

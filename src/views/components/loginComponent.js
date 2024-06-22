@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
     try {
       await AuthService.login(username, password);
-      navigate('dashboard');
+      navigate('/dashboard');
     } catch (error) {
       alert('Ops! Ocorreu um erro ao logar, atualize a página e tente novamente');
     }
